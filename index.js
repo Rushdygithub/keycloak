@@ -8,27 +8,40 @@ const keycloak = require('#middlewares/keycloak'); // Keycloak
 const port = process.env.PORT;
 
 // Routes
-const testRoutes = require('#routes/test');
-const menuItemsRoute = require('#routes/menuItems');
+const testRoutes = require('#routes/test')
+const menuItemsRoute = require('#routes/menuItems')
 
 const errorHandler = (error, req, res, next) => {
   const status = error.status || 422;
-  res.status(status).send(error.message);
+  res.status(status).send(error.message)
 }
 
-const app = express();
+const app = express()
 
-app.use(express.json());
-app.use(cors());
-app.use(keycloak.middleware());
-app.use(express.json());
+//Middleware function
+const middlewareFunction = (req,res,next) =>
+{
+  let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl
+    if(fullUrl)
+    {
+      console.log(fullUrl)
+      next()
+    }
+}
+
+
+app.use(middlewareFunction)
+app.use(express.json())
+app.use(cors())
+app.use(keycloak.middleware())
+app.use(express.json())
 
 // Register routes
-app.use('/api', testRoutes,menuItemsRoute);
-app.use(errorHandler);
+app.use('/api', testRoutes,menuItemsRoute)
+app.use(errorHandler)
 
 app.listen(port, () => {
-  console.log(`Server Started at ${port}`);
+  console.log(`Server Started at ${port}`)
 });
 
 

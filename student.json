@@ -1,0 +1,16 @@
+[
+  {
+    "name": "High School",
+    "students": [
+      {"name": "Tom"},
+      {"name": "Jerry"}
+    ]
+  },
+  {
+    "name": "Elementary School",
+    "students": [
+      {"name": "Mickey"},
+      {"name": "Donald"}
+    ]
+  }
+]

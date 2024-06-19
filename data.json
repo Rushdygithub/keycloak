@@ -1,0 +1,48 @@
+{
+"countries" : [
+{ 
+    "country": "United States",
+    "code": "US" 
+},
+{ 
+    "country": "Canada",
+    "code": "CA" 
+},
+{ 
+    "country": "United Kingdom", 
+    "code": "GB" 
+},
+{ 
+    "country": "Australia", 
+    "code": "AU" 
+},
+{ 
+    "country": "Germany",
+    "code": "DE" 
+},
+{ 
+    "country": "Amarica",
+    "code": "DE" 
+},
+{ 
+    "country": "France",
+    "code": "FR" 
+},
+{ 
+    "country": "Japan", 
+    "code": "JP" 
+},
+{ 
+    "country": "China", 
+    "code": "CN" 
+},
+{ 
+    "country": "India", 
+    "code": "IN" 
+},
+{ 
+    "country": "Brazil", 
+    "code": "BR" 
+}
+]
+}

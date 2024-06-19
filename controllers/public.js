@@ -1,5 +1,5 @@
 const axios = require('axios')
-const {reduceTaxRate,productPrice} = require('../helper/helper')
+const {reduceTaxRate,productPrice,loyalityDiscount} = require('../helper/helper')
 
 const apiResponse = async (req,res,query) => {
    try {
@@ -244,6 +244,26 @@ const productDiscount = (req,res,body) => {
    }
 }
 
+const loyaltyPoints = (req,res,body) => {
+   try {
+      // const loyality = require('../loyality.json')
+      // console.log('+++++++++++++++++++++++++++Data++++++++++++++++++++++++++++++',loyality)
+      const points = loyalityDiscount(body)
+      let discount = points * 0.01
+      let totalPrice = body.price - discount
+      console.log('+++++++++++++++++++++++++++Total Points++++++++++++++++++++++++++++++', totalPrice)
+      return res.status(200).json({
+         status: true,
+         totalprice: parseFloat(totalPrice)
+      })
+   } catch (e) {
+      console.log('+++++++++++++++++++++++++++Error log++++++++++++++++++++++++++++++', e.message)
+      return res.status(400).json({
+         error:e.message
+      })
+   }
+}
+
 module.exports = 
 {
    apiResponse,
@@ -253,5 +273,6 @@ module.exports =
    filterJsonData,
    filterData,
    taxCalculate,
-   productDiscount 
+   productDiscount,
+   loyaltyPoints 
 }

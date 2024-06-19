@@ -32,11 +32,60 @@ const productPrice = (body) => {
             return total
         }
     }
+}
+
+const loyalityDiscount = (body) => {
     
+    const loyality = require('../loyality.json')
+    const member = require('../membership.json')
+    let points = 0
+    let points1 = 0
+    let points2 = 0
+    let points3 = 0
+    let points4 = 0
+    let earns = 0 
+    let earns1 = 0
+
+    for(let i = 0; i < loyality.length; i++)
+    {
+       if (loyality[i].product === body.productCategory)
+       {
+           points += loyality[i].points
+           //console.log('+++++++++++++++++++++++++++Points++++++++++++++++++++++++++++++', points)
+           earns = body.price * points
+        //    console.log('+++++++++++++++++++++++++++Amount One++++++++++++++++++++++++++++++', earns)
+       } 
+        if (member[i].type === body.membershipTier)
+        {
+            points1 += member[i].points
+            earns1 = body.price * points1
+            earns1 = earns + earns1 
+            // console.log('+++++++++++++++++++++++++++Amount Two++++++++++++++++++++++++++++++', earns1)
+        }     
+    }
+    if (body.productCategory === 'Electronics' && body.promotion === 'blackfriday')
+    {
+        points2 += 2
+        earns1 = earns1 * points2
+        // console.log('+++++++++++++++++++++++++++Amount Two++++++++++++++++++++++++++++++', earns1)
+    }
+    if (body.productCategory === 'Clothing' && body.promotion === 'holidayseason')
+    {
+        points3 += 1.5
+        earns1 = earns1 * points3
+    }
+    if (body.productCategory === 'Groceries' && body.promotion === 'backtoschool')
+    {
+        points4 += 2
+        earns1 = earns1 * points4
+    }
+    // console.log('+++++++++++++++++++++++++++Points++++++++++++++++++++++++++++++', points)
+    return earns1
 }
 
 module.exports = 
 {
     reduceTaxRate,
-    productPrice
+    productPrice,
+    loyalityDiscount
 }

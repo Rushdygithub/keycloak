@@ -1,15 +1,22 @@
 const {check,validationResult} = require('express-validator')
 
 //check method used to validate the request and on other hands validationResult used to get the validation errors
-
 const validateProductReq = [
-    check('type')
-        .isIn(['Electronics','Clothing','Groceries'])
-        .withMessage('Invalid type value'),
-    check('membershipType')
-        .isIn(['Silver','Gold'])
-        .withMessage('Invalid membership type')
+    check('price')
+    .exists().withMessage('Product price is required'),
+    check('membershipTier')
+    .exists().withMessage('MembershipTier is required'),
+    check('productCategory')
+    .isIn(['Electronics','Clothing','Groceries']).withMessage('Invalid productCategory')
+    .exists('type').withMessage('ProductCategory is Required'),
+    check('membershipTier')
+    .isIn(['Silver','Gold']).withMessage('Invalid membershipTier type')
+    .exists().withMessage('MembershipTier is Required'),
+    check('promotion')
+    .isIn(['blackfriday','holidayseason','backtoschool']).withMessage('Invalid promotion type')
+    .exists().withMessage('Promotion is Required')
 ]
+
 
 const validationError = (req,res,next) => {
     const errors = validationResult(req)

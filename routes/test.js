@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {apiResponse,publicAPI,publicAPINew,arrayLopping,filterJsonData,filterData,taxCalculate,productDiscount} = require('../controllers/public')
+const {apiResponse,publicAPI,publicAPINew,arrayLopping,filterJsonData,filterData,taxCalculate,productDiscount,loyaltyPoints} = require('../controllers/public')
 const {validateProductReq,validationError} = require('../helper/validator')
 
 // Test Route
@@ -111,6 +111,10 @@ router.post('/tax', (req,res)=> {
 
 router.post('/product/discount', validateProductReq,validationError, (req,res)=> {
   productDiscount(req,res,req.body)
+})
+
+router.post('/loyality',validateProductReq,validationError,  (req,res)=> {
+  loyaltyPoints(req,res,req.body)
 })
 
 module.exports = router;

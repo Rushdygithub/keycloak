@@ -1,0 +1,14 @@
+[
+    {
+        "product": "Electronics",
+        "points": 1
+    },
+    {
+        "product": "Clothing",
+        "points": 2
+    },
+    {
+        "product": "Groceries",
+        "points": 0.5
+    }
+]

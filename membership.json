@@ -1,0 +1,14 @@
+[
+    {
+        "type": "Silver",
+        "points": 0.5
+    },
+    {
+        "type": "Gold",
+        "points": 0.2
+    },
+    {
+        "type": "Platinum",
+        "points": 0.3
+    }
+]

@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {apiResponse,publicAPI,publicAPINew,arrayLopping,filterJsonData,filterData,taxCalculate,productDiscount,loyaltyPoints} = require('../controllers/public')
+const {apiResponse,publicAPI,publicAPINew,arrayLopping,filterJsonData,filterData,taxCalculate,productDiscount,loyaltyPoints,loopArray} = require('../controllers/public')
 const {validateProductReq,validationError} = require('../helper/validator')
 
 // Test Route
@@ -115,6 +115,11 @@ router.post('/product/discount', validateProductReq,validationError, (req,res)=>
 
 router.post('/loyality',validateProductReq,validationError,  (req,res)=> {
   loyaltyPoints(req,res,req.body)
+})
+
+router.get('/loop', (req,res)=> {
+  let arry = [2,5,6]
+  loopArray(req,res,arry)
 })
 
 module.exports = router;

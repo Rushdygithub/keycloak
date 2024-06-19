@@ -246,12 +246,9 @@ const productDiscount = (req,res,body) => {
 
 const loyaltyPoints = (req,res,body) => {
    try {
-      // const loyality = require('../loyality.json')
-      // console.log('+++++++++++++++++++++++++++Data++++++++++++++++++++++++++++++',loyality)
       const points = loyalityDiscount(body)
       let discount = points * 0.01
       let totalPrice = body.price - discount
-      console.log('+++++++++++++++++++++++++++Total Points++++++++++++++++++++++++++++++', totalPrice)
       return res.status(200).json({
          status: true,
          totalprice: parseFloat(totalPrice)
@@ -264,6 +261,14 @@ const loyaltyPoints = (req,res,body) => {
    }
 }
 
+const loopArray = (req,res,arr) => {
+   let newArr = []
+   arr.forEach(element => {
+      newArr.push(element*2)
+   })
+   console.log(newArr)
+}
+
 module.exports = 
 {
    apiResponse,
@@ -274,5 +279,6 @@ module.exports =
    filterData,
    taxCalculate,
    productDiscount,
-   loyaltyPoints 
+   loyaltyPoints,
+   loopArray
 }
